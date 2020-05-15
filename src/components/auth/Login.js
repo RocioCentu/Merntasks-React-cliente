@@ -57,7 +57,7 @@ const Login = (props) => {
     return ( 
     
     <div className="form-usuario">
-      <?php header('Access-Control-Allow-Origin: *'); ?>
+    
           {alerta ?( <div className={`alerta ${alerta.categoria}`}> {alerta.msg}</div>) : null}
         <div className="contenedor-form sonbra-dark">
             <h1>Iniciar Sesion</h1>
