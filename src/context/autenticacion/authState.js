@@ -15,6 +15,8 @@ import {
 } from '../../types';
 
 const AuthState = props => {
+    const header = new Headers();
+header.append('Access-Control-Allow-Origin', '*');
     const initialState = {
         token: localStorage.getItem('token'),
         autenticado: null,
@@ -79,7 +81,7 @@ const AuthState = props => {
     // Cuando el usuario inicia sesión
     const iniciarSesion = async datos => {
         try {
-            const respuesta = await clienteAxios.post('/api/auth', datos);
+            const respuesta = await clienteAxios.post('/api/auth', datos,header);
             
             dispatch({
                 type: LOGIN_EXITOSO,
