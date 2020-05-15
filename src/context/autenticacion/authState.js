@@ -80,30 +80,7 @@ header.append('Access-Control-Allow-Origin', '*');
 
     // Cuando el usuario inicia sesión
     const iniciarSesion = async datos => {
-        console.log('HAY CAMBIOOS');
-        try {
-            
-            const respuesta = await clienteAxios.post('/api/auth', datos,header);
-            
-            dispatch({
-                type: LOGIN_EXITOSO,
-                payload: respuesta.data
-            });
-
-            // Obtener el usuario
-            usuarioAutenticado();
-        } catch (error) {
-            console.log('HAY CAMBIOOS');
-            const alerta = {
-                msg: error.response.data.msg,
-                categoria: 'alerta-error'
-            }
-
-            dispatch({
-                type: LOGIN_ERROR,
-                payload: alerta
-            })
-        }
+ 
     }
 
     // Cierra la sesión del usuario
