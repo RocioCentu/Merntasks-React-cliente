@@ -15,8 +15,6 @@ import {
 } from '../../types';
 
 const AuthState = props => {
-    const header = new Headers();
-header.append('Access-Control-Allow-Origin', '*');
     const initialState = {
         token: localStorage.getItem('token'),
         autenticado: null,
@@ -30,7 +28,7 @@ header.append('Access-Control-Allow-Origin', '*');
     const registrarUsuario = async datos => {
         try {
 
-            const respuesta = await clienteAxios.post('/api/usuarios', datos,header);
+            const respuesta = await clienteAxios.post('/api/usuarios', datos);
             console.log(respuesta.data);
         
             dispatch({
@@ -63,7 +61,7 @@ header.append('Access-Control-Allow-Origin', '*');
         }
 
         try {
-            const respuesta = await clienteAxios.get('/api/auth',header);
+            const respuesta = await clienteAxios.get('/api/auth');
             // console.log(respuesta);
             dispatch({
                 type: OBTENER_USUARIO,
@@ -80,10 +78,8 @@ header.append('Access-Control-Allow-Origin', '*');
 
     // Cuando el usuario inicia sesión
     const iniciarSesion = async datos => {
- 
         try {
-            
-            const respuesta = await clienteAxios.post('/api/auth', datos,header);
+            const respuesta = await clienteAxios.post('/api/auth', datos);
             
             dispatch({
                 type: LOGIN_EXITOSO,
@@ -93,7 +89,7 @@ header.append('Access-Control-Allow-Origin', '*');
             // Obtener el usuario
             usuarioAutenticado();
         } catch (error) {
-           
+            console.log(error.response.data.msg);
             const alerta = {
                 msg: error.response.data.msg,
                 categoria: 'alerta-error'
